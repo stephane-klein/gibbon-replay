@@ -18,7 +18,6 @@
     "dependencies": {
         "@rrweb/record": "2.0.0-alpha.17",
         "ioredis": "5.4.1",
-        "rrweb-player": "1.0.0-alpha.4",
-        "uuid": "10.0.0"
+        "rrweb-player": "1.0.0-alpha.4"
     }
 }
