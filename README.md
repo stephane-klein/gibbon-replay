@@ -1,4 +1,4 @@
-# gibbon-replay POC
+# rrweb-replay POC
 
 In this POC, my goal was to create a minimalist, easy-to-deploy browser session recorder based on [rrweb](https://github.com/rrweb-io/rrweb/).
 
