@@ -1,10 +1,17 @@
 import redis from '$lib/server/redis';
 
-export async function POST({ request }) {
+export async function POST({ cookies, request }) {
     try {
+        const rrweb_session_id = cookies.get('rrweb_session_id')
         const data = await request.json();
         await redis.zadd(
-            `session:3`,
+            'rrweb_session_list',
+            'NX', 
+            Date.now(),
+            rrweb_session_id
+        )
+        await redis.zadd(
+            `session:${rrweb_session_id}`,
             data.events[0].timestamp,
             JSON.stringify(data.events) 
         );
