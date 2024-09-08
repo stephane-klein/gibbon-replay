@@ -1,0 +1,14 @@
+services:
+  keydb:
+    image: eqalpha/keydb:alpine_x86_64_v6.3.4
+    command: keydb-server /etc/keydb/keydb.conf --server-threads 4 --requirepass password --appendonly yes
+    ports:
+      - 6379:6379
+    volumes:
+      - ./volumes/keydb/:/data/
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
