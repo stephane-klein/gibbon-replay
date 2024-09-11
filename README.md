@@ -8,19 +8,8 @@ The `/replay/` page loads a session's events from KeyDB and sends them to the [`
 
 More information (in french): https://notes.sklein.xyz/Notes-%C3%A9ph%C3%A9m%C3%A8res/2024-09-07_2240
 
+Here is how to test the project:
 
-```sh
-$ mise install
-$ docker compose up -d --wait
-$ pnpm install
-$ pnpm run dev
-```
+Go to [`app/`](app/), read the README.md and start *app* component.
 
-Instructions for use: browse freely to <http://localhost:5173> and then go to <http://localhost:5173/replay/> to see the replay of your session.
-
-## Development workflow
-
-```sh
-$ cd packages/gibbon-replay-js
-$ pnpm run build
-$ pnpm link --dir ../..
+Next, go [`demosite/`](demosite/), read the README, start the *demosite*, browse in the site and return to *app* to watch the replays.

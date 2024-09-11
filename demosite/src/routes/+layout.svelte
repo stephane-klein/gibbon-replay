@@ -5,7 +5,7 @@
 
     onMount(async () => {
         if (browser) {
-            gibbonReplayJs.init("/_record/");
+            gibbonReplayJs.init(URL("/_record/", process.env.GIBBON_REPLAY_URL).toString());
         }
     });
 </script>

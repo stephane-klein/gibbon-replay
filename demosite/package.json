@@ -1,10 +1,10 @@
 {
-    "name": "my-app",
+    "name": "demosite",
     "version": "0.0.1",
     "type": "module",
     "private": true,
     "scripts": {
-        "dev": "vite dev --port 5173",
+        "dev": "vite dev --port 5174",
         "build": "vite build",
         "preview": "vite preview"
     },
@@ -16,7 +16,6 @@
         "vite": "5.4.3"
     },
     "dependencies": {
-        "ioredis": "5.4.1",
-        "rrweb-player": "1.0.0-alpha.4"
+        "gibbon-replay-js": "workspace:*"
     }
 }
