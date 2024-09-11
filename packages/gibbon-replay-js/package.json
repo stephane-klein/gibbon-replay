@@ -1,0 +1,10 @@
+{
+    "name": "gibbon-replay-js",
+    "version": "0.1.0",
+    "type": "module",
+    "main": "./src/index.js",
+    "dependencies": {
+        "@fingerprintjs/fingerprintjs": "4.5.0",
+        "@rrweb/record": "2.0.0-alpha.17"
+    }
+}

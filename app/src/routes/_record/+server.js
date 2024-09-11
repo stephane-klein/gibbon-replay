@@ -3,10 +3,7 @@ import redis from '$lib/server/redis';
 export async function POST({ request }) {
     try {
         const data = await request.json();
-        console.log(data);
-        console.log(request.headers);
         if (!data.events) {
-            console.log("ici1");
             await redis.zadd(
                 'rrweb_session_list',
                 'NX', 

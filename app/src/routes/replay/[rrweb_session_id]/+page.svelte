@@ -5,7 +5,6 @@
     import 'rrweb-player/dist/style.css';
 
     export let data;
-    console.log(data);
 
     let container;
 

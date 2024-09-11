@@ -6,11 +6,11 @@ settings:
 
 importers:
 
-  app:
+  .:
     dependencies:
       gibbon-replay-js:
         specifier: workspace:*
-        version: link:../packages/gibbon-replay-js
+        version: link:packages/gibbon-replay-js
       ioredis:
         specifier: 5.4.1
         version: 5.4.1
