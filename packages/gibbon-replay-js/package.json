@@ -1,0 +1,23 @@
+{
+    "name": "gibbon-replay-js",
+    "version": "0.1.0",
+    "type": "module",
+    "module": "dist/index.js",
+    "scripts": {
+        "build2": "babel src --out-dir dist --source-maps && terser dist/*.js --compress --mangle --source-map --output dist/index.min.js",
+        "build": "babel src --out-dir dist",
+        "prepare": "npm run build"
+    },
+    "files": [
+        "dist"
+    ],
+    "devDependencies": {
+        "@babel/cli": "7.25.6",
+        "@babel/preset-env": "7.25.4",
+        "terser": "5.32.0"
+    },
+    "dependencies": {
+        "@fingerprintjs/fingerprintjs": "4.5.0",
+        "@rrweb/record": "2.0.0-alpha.17"
+    }
+}

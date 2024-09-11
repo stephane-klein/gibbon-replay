@@ -17,3 +17,10 @@ $ pnpm run dev
 ```
 
 Instructions for use: browse freely to <http://localhost:5173> and then go to <http://localhost:5173/replay/> to see the replay of your session.
+
+## Development workflow
+
+```sh
+$ cd packages/gibbon-replay-js
+$ pnpm run build
+$ pnpm link --dir ../..
