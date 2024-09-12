@@ -16,6 +16,6 @@
         "vite": "5.4.3"
     },
     "dependencies": {
-        "gibbon-replay-js": "workspace:*"
+        "gibbon-replay-js": "0.2.0"
     }
 }
