@@ -1,4 +1,4 @@
-import { fail, redirect } from '@sveltejs/kit';
+import { redirect } from '@sveltejs/kit';
 
 export const load = async ({ cookies }) => {
     const [username, password] = (cookies.get('auth') ?? ":").split(":");
