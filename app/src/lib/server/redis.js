@@ -5,5 +5,8 @@ const redis = new Redis({
     port: process.env.REDIS_PORT || 6379,
     password: process.env.REDIS_PASSWORD || 'password'
 });
+redis.on("error", (err) => {
+    console.error('Redis connection error:', err.message);
+});
 
 export default redis;
