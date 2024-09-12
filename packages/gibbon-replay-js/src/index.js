@@ -7,20 +7,23 @@ export async function init(recordUrl) {
     if (!sessionStorage.getItem('rrweb_session_id')) {
         sessionStorage.setItem('rrweb_session_id', crypto.randomUUID());
 
-        fetch('/_record/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                rrweb_session_id: sessionStorage.getItem('rrweb_session_id'),
-                screenWidth: window.screen.width,
-                screenHeight: window.screen.height,
-                userAgent: navigator.userAgent,
-                platform: navigator.platform,
-                fingerprint: (await (await FingerprintJS.load()).get()).visitorId
-            })
-        });
+        fetch(
+            recordUrl,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    rrweb_session_id: sessionStorage.getItem('rrweb_session_id'),
+                    screenWidth: window.screen.width,
+                    screenHeight: window.screen.height,
+                    userAgent: navigator.userAgent,
+                    platform: navigator.platform,
+                    fingerprint: (await (await FingerprintJS.load()).get()).visitorId
+                })
+            }
+        );
     }
     record({
         emit(event) {
