@@ -2,10 +2,11 @@
     import gibbonReplayJs from 'gibbon-replay-js';
     import { onMount } from 'svelte';
     import { browser } from '$app/environment';
+    export let data;
 
     onMount(async () => {
         if (browser) {
-            gibbonReplayJs.init(URL("/_record/", process.env.GIBBON_REPLAY_URL).toString());
+            gibbonReplayJs.init(new URL("/record/", data.gibbon_replay_url).toString());
         }
     });
 </script>

@@ -3,6 +3,7 @@
 ```sh
 $ mise install
 $ pnpm install
+$ direnv allow
 $ pnpm run dev
 ```
 
