@@ -1,0 +1,7 @@
+.svelte-kit
+node_modules/
+volumes/
+Dockerfile
+README.md
+docker-compose.yaml
+
