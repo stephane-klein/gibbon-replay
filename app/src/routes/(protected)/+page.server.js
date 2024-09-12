@@ -11,7 +11,6 @@ export async function load() {
             ...JSON.parse(data[i])
         });
     }
-    console.log(result);
     return {
         rrweb_session_list: result
     };

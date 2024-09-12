@@ -1,36 +1,14 @@
-export const load = async ({ request }) => {
-    const authHeader = request.headers.get('authorization');
+import { fail, redirect } from '@sveltejs/kit';
 
-    if (!authHeader || !authHeader.startsWith('Basic ')) {
-        return {
-            status: 401,
-            headers: {
-                'WWW-Authenticate': 'Basic realm="Secure Area"'
-            },
-            body: 'Unauthorized'
-        };
+export const load = async ({ cookies }) => {
+    const [username, password] = (cookies.get('auth') ?? ":").split(":");
+
+    if (
+        (username !== (process.env.AUTH_USER || 'admin')) ||
+        (password !== (process.env.AUTH_PASSWORD || 'password'))
+    ) {
+        return redirect(303, '/login/');
     }
-
-    const base64Credentials = authHeader.split(' ')[1];
-    const credentials = atob(base64Credentials).split(':');
-    const [username, password] = credentials;
-
-    const isValid = (
-        (username === process.env.AUTH_USER || 'admin') && 
-        (password === process.env.AUTH_PASSWORD || 'password')
-    );
-
-    if (!isValid) {
-        return {
-            status: 401,
-            headers: {
-                'WWW-Authenticate': 'Basic realm="Secure Area"'
-            },
-            body: 'Unauthorized'
-        };
-    }
-
     return {
-        status: 200
-    };
+    }
 };

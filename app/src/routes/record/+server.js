@@ -1,4 +1,16 @@
+export const trailingSlash = "always";
+
 import redis from '$lib/server/redis';
+
+export async function OPTIONS() {
+    return new Response(null, {
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type'
+        },
+    })
+}
 
 export async function POST({ request }) {
     try {
@@ -23,12 +35,14 @@ export async function POST({ request }) {
             JSON.stringify(data.events) 
         );
 
-        return new Response('', {
-            status: 200,
-            headers: {
-                'Content-Type': 'application/json'
+        return new Response('',
+            {
+                status: 200,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             }
-        });
+        );
     } catch (error) {
         console.error('Error:', error);
 
