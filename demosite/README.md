@@ -10,3 +10,9 @@ $ pnpm run dev
 Browse freely to <http://localhost:5174>
 
 After `pnpm install`, don't forget to execute `./scripts/generate-local-pnpm-lock-file.sh` to generate `pnpm-lock.yaml` that will be useful during the Docker image build process.
+
+You can test the Docker image build directly with:
+
+```sh
+$ ./scripts/build-docker.sh
+```
