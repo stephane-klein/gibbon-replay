@@ -1,4 +1,4 @@
-# rrweb-replay application
+# rrweb-replay-server
 
 ```sh
 $ mise install

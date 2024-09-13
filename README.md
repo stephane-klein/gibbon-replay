@@ -10,7 +10,7 @@ More information (in french): https://notes.sklein.xyz/Notes-%C3%A9ph%C3%A9m%C3%
 
 Here is how to test the project:
 
-Go to [`app/`](app/), read the README.md and start *app* component.
+Go to [`gibbon-replay-server/`](gibbon-replay-server/), read the README.md and start *gibbon-replay-server* component.
 
 Next, go [`demosite/`](demosite/), read the README, start the *demosite*, browse in the site and return to *app* to watch the replays.
 

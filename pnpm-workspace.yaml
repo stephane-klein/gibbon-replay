@@ -1,4 +1,4 @@
 packages:
   - 'packages/*'
   - 'demosite/'
-  - 'app/'
+  - 'gibbon-replay-server/'

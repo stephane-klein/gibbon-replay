@@ -11,8 +11,8 @@ services:
       retries: 3
       start_period: 5s
 
-  gibbon-replay:
-    build: ../app/
+  gibbon-replay-server:
+    build: ../gibbon-replay-server/
     ports:
       - 5173:3000
     environment:

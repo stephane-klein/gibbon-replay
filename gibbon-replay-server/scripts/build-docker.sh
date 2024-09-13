@@ -3,4 +3,4 @@ set -e
 
 cd "$(dirname "$0")/../"
 
-docker build . -t gibbon-replay:latest
+docker build . -t gibbon-replay-server:latest
