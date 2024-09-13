@@ -13,3 +13,5 @@ Here is how to test the project:
 Go to [`app/`](app/), read the README.md and start *app* component.
 
 Next, go [`demosite/`](demosite/), read the README, start the *demosite*, browse in the site and return to *app* to watch the replays.
+
+You can also check out the playground in the [`/deployment-playground/`](./deployment-playground/) folder, which allows you to test *gibbon-replay* under the same conditions as on a production environment.
