@@ -1,27 +1,26 @@
 FROM node:20-slim AS base
-RUN npm install -g pnpm@9.10
+RUN apt update -y; apt install -y curl
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
 
 WORKDIR /app
+COPY package.json /app
+COPY pnpm-lock.yaml /app
 
-COPY ./         /app/
-RUN pnpm install
+FROM base AS prod-deps
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
+
+FROM base AS build
+COPY . /app
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+RUN ls /app/node_modules/ -lha
 RUN pnpm run build
 
-FROM node:20-slim
-RUN apt update -y; apt install -y curl
-RUN npm install -g pnpm@9.10
-
-WORKDIR /app
-
-COPY --from=base /app/package.json ./
-COPY --from=base /app/pnpm-lock.yaml ./
-
-RUN pnpm install
-
-COPY --from=base /app/build ./
-
+FROM base
+COPY --from=prod-deps /app/node_modules /app/node_modules
+COPY --from=build /app/build /app/build
 EXPOSE 3000
 
 HEALTHCHECK --interval=30s --timeout=10s --retries=3 CMD curl --fail http://localhost:3000 || exit 1
-
-CMD ["node", "./index.js"]
+CMD ["node", "./build/index.js"]
