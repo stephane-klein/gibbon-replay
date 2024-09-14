@@ -21,6 +21,9 @@ services:
       REDIS_PASSWORD: password
       AUTH_USER: admin
       AUTH_PASSWORD: password
+    depends_on:
+      redis:
+        condition: service_healthy
 
   demosite:
     build: ../demosite/
