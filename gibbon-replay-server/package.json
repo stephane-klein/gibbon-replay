@@ -12,9 +12,10 @@
         "@sveltejs/adapter-node": "5.2.2",
         "@sveltejs/kit": "2.5.26",
         "@sveltejs/vite-plugin-svelte": "3.1.2",
+        "rrweb-player": "1.0.0-alpha.4",
         "svelte": "4.2.19",
         "vite": "5.4.4",
-        "rrweb-player": "1.0.0-alpha.4"
+        "date-fns": "4.0.0-beta.1"
     },
     "dependencies": {
         "ioredis": "5.4.1"

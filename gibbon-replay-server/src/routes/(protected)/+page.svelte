@@ -1,4 +1,5 @@
 <script>
+    import { format } from 'date-fns';
     export let data;
 </script>
 
@@ -17,7 +18,7 @@
     <tbody>
         {#each data.rrweb_session_list as row}
             <tr>
-                <td><a href={`./${row.rrweb_session_id}/`}>{row.timestamp}</a></td>
+                <td><a href={`./${row.rrweb_session_id}/`}>{format(new Date(Number(row.timestamp)), 'yyyy-MM-dd HH:mm:ss')}</a></td>
                 <td><a href={`./${row.rrweb_session_id}/`}>{row.screenWidth}px x {row.screenHeight}px</a></td>
                 <td><a href={`./${row.rrweb_session_id}/`}>{row.userAgent}</a></td>
                 <td><a href={`./${row.rrweb_session_id}/`}>{row.platform}</a></td>
