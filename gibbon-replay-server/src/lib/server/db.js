@@ -1,6 +1,5 @@
 import Database from 'better-sqlite3';
 
-console.log("ici1");
 const db = new Database(
     process.env.SQLITE_PATH || 'gibbon.db'
 );
