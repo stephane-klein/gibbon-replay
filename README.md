@@ -1,6 +1,6 @@
-# rrweb-replay POC
+# gibbon-replay
 
-In this POC, my goal was to create a minimalist, easy-to-deploy browser session recorder based on [rrweb](https://github.com/rrweb-io/rrweb/).
+**gibbon-replay** is a minimalist, easy-to-deploy browser session recorder based on [rrweb](https://github.com/rrweb-io/rrweb/).
 
 Session events are recorded and sent to an HTTP POST endpoint implemented in [SvelteKit](https://kit.svelte.dev/), these data are then stored in [Redis](https://github.com/redis/redis).
 
