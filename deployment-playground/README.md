@@ -4,7 +4,7 @@ You can use this playground to test `gibbon-replay` under the same conditions as
 
 This [`docker-compose.yaml`](./docker-compose.yaml) contains only three services:
 
-- *keydb* (redis fork), where sessions are stored
+- *redis*, where sessions are stored
 - *gibbon-replay-server*, which provides a session recording endpoint and replay interface
 - *demosite*, a fictitious demonstration site that integrates gibbon-replay-js
 

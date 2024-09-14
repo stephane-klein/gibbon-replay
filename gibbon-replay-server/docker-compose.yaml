@@ -1,11 +1,11 @@
 services:
-  keydb:
-    image: eqalpha/keydb:alpine_x86_64_v6.3.4
-    command: keydb-server /etc/keydb/keydb.conf --server-threads 4 --requirepass password --appendonly yes
+  redis:
+    image: redis:7.4-alpine
+    command: redis-server --appendonly yes --appendfsync everysec --requirepass password
     ports:
       - 6379:6379
     volumes:
-      - ./volumes/keydb/:/data/
+      - ./volumes/redis/:/data/
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 30s
