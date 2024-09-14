@@ -1,5 +1,5 @@
 FROM node:20-slim AS base
-RUN apt update -y; apt install -y curl
+RUN apt update -y; apt install -y curl python3 build-essential
 RUN npm install -g pnpm@9.10
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
