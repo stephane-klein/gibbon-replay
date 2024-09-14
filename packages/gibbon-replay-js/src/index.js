@@ -7,22 +7,16 @@ export async function init(recordUrl) {
     if (!sessionStorage.getItem('rrweb_session_id')) {
         sessionStorage.setItem('rrweb_session_id', crypto.randomUUID());
 
-        fetch(
+        navigator.sendBeacon(
             recordUrl,
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    rrweb_session_id: sessionStorage.getItem('rrweb_session_id'),
-                    screenWidth: window.screen.width,
-                    screenHeight: window.screen.height,
-                    userAgent: navigator.userAgent,
-                    platform: navigator.platform,
-                    fingerprint: (await (await FingerprintJS.load()).get()).visitorId
-                })
-            }
+            JSON.stringify({
+                rrweb_session_id: sessionStorage.getItem('rrweb_session_id'),
+                screenWidth: window.screen.width,
+                screenHeight: window.screen.height,
+                userAgent: navigator.userAgent,
+                platform: navigator.platform,
+                fingerprint: (await (await FingerprintJS.load()).get()).visitorId
+            })
         );
     }
     record({
@@ -33,21 +27,14 @@ export async function init(recordUrl) {
 
     function save() {
         if (events.length > 0) {
-            const body = JSON.stringify({
-                events,
-                rrweb_session_id: sessionStorage.getItem('rrweb_session_id')
-            });
-            events = [];
-            fetch(
+            navigator.sendBeacon(
                 recordUrl,
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body,
-                }
+                JSON.stringify({
+                    events,
+                    rrweb_session_id: sessionStorage.getItem('rrweb_session_id')
+                })
             );
+            events = [];
         }
     }
 

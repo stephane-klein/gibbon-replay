@@ -14,7 +14,7 @@ export async function OPTIONS() {
 
 export async function POST({ request }) {
     try {
-        const data = await request.json();
+        const data = JSON.parse(await request.text());
         if (!data.events) {
             await redis.zadd(
                 'rrweb_session_list',
