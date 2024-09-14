@@ -1,6 +1,5 @@
+import db from "$lib/server/db.js";
 export const trailingSlash = "always";
-
-import redis from '$lib/server/redis';
 
 export async function OPTIONS() {
     return new Response(null, {
@@ -16,24 +15,37 @@ export async function POST({ request }) {
     try {
         const data = JSON.parse(await request.text());
         if (!data.events) {
-            await redis.zadd(
-                'rrweb_session_list',
-                'NX', 
-                Date.now(),
-                JSON.stringify({
-                    ...data,
-                    ip: (
-                        request.headers.get('x-forwarded-for') ||
-                        request.headers.get('x-real-ip')
-                    )
-                })
-            )
+            db.prepare(`
+                INSERT INTO sessions (
+                    session_uuid,
+                    ip,
+                    fingerprint,
+                    info
+                )
+                VALUES(?, ?, ?, ?)
+            `).run(
+                data.rrweb_session_id,
+                (
+                    request.headers.get('x-forwarded-for') ||
+                    request.headers.get('x-real-ip')
+                ),
+                data.fingerprint,
+                JSON.stringify(data)
+            );
+        } else {
+            db.prepare(`
+                INSERT INTO session_events (
+                    session_uuid,
+                    timestamp,
+                    data
+                )
+                VALUES(?, ?, ?)
+            `).run(
+                data.rrweb_session_id,
+                data.events[0].timestamp,
+                JSON.stringify(data.events)
+            );
         }
-        await redis.zadd(
-            `session:${data.rrweb_session_id}`,
-            data.events[0].timestamp,
-            JSON.stringify(data.events) 
-        );
 
         return new Response('',
             {

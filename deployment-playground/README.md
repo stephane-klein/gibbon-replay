@@ -2,11 +2,11 @@
 
 You can use this playground to test `gibbon-replay` under the same conditions as in production.
 
-This [`docker-compose.yaml`](./docker-compose.yaml) contains only three services:
+This [`docker-compose.yaml`](./docker-compose.yaml) contains only two services:
 
-- *redis*, where sessions are stored
 - *gibbon-replay-server*, which provides a session recording endpoint and replay interface
-- *demosite*, a fictitious demonstration site that integrates gibbon-replay-js
+  - all data are recorded in SQLite database
+- *demosite*, a fictitious demonstration site that integrates *gibbon-replay-js*
 
 Gettiing start:
 

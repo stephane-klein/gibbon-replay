@@ -1,29 +1,14 @@
 services:
-  redis:
-    image: redis:7.4-alpine
-    command: redis-server --appendonly yes --appendfsync everysec --requirepass password
-    volumes:
-      - ./volumes/redis/:/data/
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
-      start_period: 5s
-
   gibbon-replay-server:
     build: ../gibbon-replay-server/
     ports:
       - 5173:3000
+    volumes:
+      - ./volumes/sqlite/:/data/
     environment:
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
-      REDIS_PASSWORD: password
+      SQLITE_PATH: /data/gibbon.db
       AUTH_USER: admin
       AUTH_PASSWORD: password
-    depends_on:
-      redis:
-        condition: service_healthy
 
   demosite:
     build: ../demosite/

@@ -1,5 +1,4 @@
 <script>
-    import { format } from 'date-fns';
     export let data;
 </script>
 
@@ -12,18 +11,20 @@
             <th>Platform</th>
             <th>Fingerprint</th>
             <th>ip</th>
+            <th>Actions</th>
         </tr>
     </thead>
 
     <tbody>
         {#each data.rrweb_session_list as row}
             <tr>
-                <td><a href={`./${row.rrweb_session_id}/`}>{format(new Date(Number(row.timestamp)), 'yyyy-MM-dd HH:mm:ss')}</a></td>
-                <td><a href={`./${row.rrweb_session_id}/`}>{row.screenWidth}px x {row.screenHeight}px</a></td>
-                <td><a href={`./${row.rrweb_session_id}/`}>{row.userAgent}</a></td>
-                <td><a href={`./${row.rrweb_session_id}/`}>{row.platform}</a></td>
-                <td><a href={`./${row.rrweb_session_id}/`}>{row.fingerprint}</a></td>
-                <td><a href={`./${row.rrweb_session_id}/`}>{row.ip}</a></td>
+                <td><a href={`./${row.session_uuid}/`}>{row.timestamp}</a></td>
+                <td><a href={`./${row.session_uuid}/`}>{row.info.screenWidth}px x {row.info.screenHeight}px</a></td>
+                <td><a href={`./${row.session_uuid}/`}>{row.info.userAgent}</a></td>
+                <td><a href={`./${row.session_uuid}/`}>{row.info.platform}</a></td>
+                <td><a href={`./${row.session_uuid}/`}>{row.fingerprint}</a></td>
+                <td><a href={`./${row.session_uuid}/`}>{row.ip}</a></td>
+                <td>[<a href={`./${row.session_uuid}/delete/`}>delete</a>]</td>
             </tr>
         {/each}
     </tbody>
