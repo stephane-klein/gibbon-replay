@@ -49,6 +49,37 @@ export async function POST({ request }) {
                 data.fingerprint,
                 JSON.stringify(data)
             );
+            if (process.env.GOTIFY_URL && process.env.GOTIFY_KEY) {
+                try {
+                    fetch(
+                        new URL('/message', process.env.GOTIFY_URL).toString(),
+                        {
+                            method: 'POST',
+                            headers: {
+                                "Accept": 'application/json',
+                                "X-Gotify-Key": process.env.GOTIFY_KEY,
+                                "Content-type": 'application/json; charset=UTF-8'
+                            },
+                            body: JSON.stringify({
+                                title: 'New session recording',
+                                message: data.rrweb_session_id,
+                                message: `[${data.rrweb_session_id}](${new URL("/" + data.rrweb_session_id + "/", process.env.ORIGIN).toString()})`,
+                                extras: {
+                                    "client::display": {
+                                        "contentType": "text/markdown"
+                                    },
+                                }
+                            })
+                        }
+                    ).catch(
+                        (err) => {
+                            console.error('Gotify request error:', err)
+                        }
+                    );
+                } catch (error) {
+                    console.error("Gotify fetch error:", error);
+                }
+            }
         } else {
             db.prepare(`
                 INSERT INTO session_events (
