@@ -2,7 +2,6 @@
 
 ```sh
 $ mise install
-$ docker compose up -d --wait
 $ pnpm install
 $ pnpm run dev
 ```
