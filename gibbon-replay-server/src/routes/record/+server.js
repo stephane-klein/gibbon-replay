@@ -21,7 +21,7 @@ export async function OPTIONS() {
 export async function POST({ request }) {
     try {
         const data = JSON.parse(await request.text());
-        if (!data.events) {
+        if (db.prepare(`SELECT count(*) AS count FROM sessions WHERE session_uuid = ?`).get(data.rrweb_session_id).count == 0) {
             const ip = (
                 request.headers.get('x-forwarded-for') ||
                 request.headers.get('x-real-ip') || null
@@ -80,7 +80,8 @@ export async function POST({ request }) {
                     console.error("Gotify fetch error:", error);
                 }
             }
-        } else {
+        }
+        if (data.events) {
             db.prepare(`
                 INSERT INTO session_events (
                     session_uuid,
