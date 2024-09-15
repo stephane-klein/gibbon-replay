@@ -18,6 +18,7 @@
         "vite": "5.4.4"
     },
     "dependencies": {
-        "better-sqlite3": "11.3.0"
+        "better-sqlite3": "11.3.0",
+        "ip-location-api": "1.0.0"
     }
 }

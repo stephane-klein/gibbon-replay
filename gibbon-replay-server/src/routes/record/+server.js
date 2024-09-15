@@ -1,5 +1,12 @@
 import db from "$lib/server/db.js";
+import { lookup, reload } from 'ip-location-api';
 export const trailingSlash = "always";
+
+await reload({
+    fields: 'country,city,country_name,eu,area',
+    addCountryInfo: 'true',
+    language: 'en'
+})
 
 export async function OPTIONS() {
     return new Response(null, {
@@ -15,6 +22,19 @@ export async function POST({ request }) {
     try {
         const data = JSON.parse(await request.text());
         if (!data.events) {
+            const ip = (
+                request.headers.get('x-forwarded-for') ||
+                request.headers.get('x-real-ip') || null
+            );
+
+            if (ip) {
+                try {
+                    data.location = lookup(ip);
+                } catch(error) {
+                    console.log(error);
+                }
+            }
+
             db.prepare(`
                 INSERT INTO sessions (
                     session_uuid,
@@ -25,10 +45,7 @@ export async function POST({ request }) {
                 VALUES(?, ?, ?, ?)
             `).run(
                 data.rrweb_session_id,
-                (
-                    request.headers.get('x-forwarded-for') ||
-                    request.headers.get('x-real-ip')
-                ),
+                ip,
                 data.fingerprint,
                 JSON.stringify(data)
             );

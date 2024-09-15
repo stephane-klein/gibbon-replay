@@ -15,7 +15,12 @@ RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-l
 FROM base AS build
 COPY . /app
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+ENV ILA_FIELDS=country,city,country_name,eu,area
+ENV ILA_ADD_COUNTRY_INFO=true
+ENV ILA_LANGUAGE=en
+RUN node ./node_modules/ip-location-api/script/updatedb.mjs
 RUN pnpm run build
+
 
 FROM base
 COPY --from=prod-deps /app/node_modules /app/node_modules
