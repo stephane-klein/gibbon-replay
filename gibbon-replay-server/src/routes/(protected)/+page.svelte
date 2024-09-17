@@ -1,5 +1,22 @@
 <script>
+    import { Temporal } from 'temporal-polyfill'
+
     export let data;
+
+    function convertDatetimeToBrowserTimezone(value) {
+        return Temporal.PlainDateTime
+            .from(value)
+            .toZonedDateTime('UTC')
+            .withTimeZone(
+                Intl.DateTimeFormat().resolvedOptions().timeZone
+            )
+            .toString({
+                offset: 'never',
+                timeZoneName: 'never'
+            })
+            .replace('T', ' ');
+        ;
+    }
 </script>
 
 <table>
@@ -19,7 +36,7 @@
     <tbody>
         {#each data.rrweb_session_list as row}
             <tr>
-                <td><a href={`./${row.session_uuid}/`}>{row.timestamp}</a></td>
+                <td><a href={`./${row.session_uuid}/`}>{convertDatetimeToBrowserTimezone(row.timestamp)}</a></td>
                 <td><a href={`./${row.session_uuid}/`}>{row.info.screenWidth}px x {row.info.screenHeight}px</a></td>
                 <td><a href={`./${row.session_uuid}/`}>{row.info.userAgent}</a></td>
                 <td><a href={`./${row.session_uuid}/`}>{row.info.platform}</a></td>
