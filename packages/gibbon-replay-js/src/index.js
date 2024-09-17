@@ -1,5 +1,6 @@
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
 import { record } from '@rrweb/record';
+console.log("ici2");
 
 export async function init(recordUrl) {
     let events = [];
@@ -15,7 +16,8 @@ export async function init(recordUrl) {
                 screenHeight: window.screen.height,
                 userAgent: navigator.userAgent,
                 platform: navigator.platform,
-                fingerprint: (await (await FingerprintJS.load()).get()).visitorId
+                fingerprint: (await (await FingerprintJS.load()).get()).visitorId,
+                href: document.location.href
             })
         );
     }
