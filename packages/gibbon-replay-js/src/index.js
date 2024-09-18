@@ -1,6 +1,5 @@
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
 import { record } from '@rrweb/record';
-console.log("ici2");
 
 export async function init(recordUrl) {
     let events = [];
