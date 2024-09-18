@@ -1,18 +1,14 @@
-import { Temporal } from 'temporal-polyfill'
+import { format } from 'date-fns';
+import { fromZonedTime, toZonedTime } from 'date-fns-tz';
 
 export function convertDatetimeToBrowserTimezone(value) {
-    return Temporal.PlainDateTime
-        .from(value)
-        .toZonedDateTime('UTC')
-        .withTimeZone(
+    return format(
+        toZonedTime(
+            fromZonedTime(value, "UTC"),
             Intl.DateTimeFormat().resolvedOptions().timeZone
-        )
-        .toString({
-            offset: 'never',
-            timeZoneName: 'never'
-        })
-        .replace('T', ' ');
-    ;
+        ),
+        "yyyy-mm-dd HH:MM:SS"
+    )
 }
 
 export function extractTrackCampaign(url) {

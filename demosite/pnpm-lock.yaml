@@ -18,8 +18,8 @@ importers:
         specifier: 3.1.2
         version: 3.1.2(svelte@4.2.19)(vite@5.4.3)
       gibbon-replay-js:
-        specifier: 0.2.0
-        version: 0.2.0
+        specifier: 0.4.0
+        version: 0.4.0
       svelte:
         specifier: 4.2.19
         version: 4.2.19
@@ -494,8 +494,8 @@ packages:
   function-bind@1.1.2:
     resolution: {integrity: sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==}
 
-  gibbon-replay-js@0.2.0:
-    resolution: {integrity: sha512-yVSVA8Xw1ViSuIbh5uQ2QWraDv2ANknjbpxLgQAhCvdchby4C0Z1OQk+cZ3QxGV1CYm3BX3hGPC4q6XOT0eQTg==}
+  gibbon-replay-js@0.4.0:
+    resolution: {integrity: sha512-1cUTe2cMX5weXrrhnhXHhwgR+JdgR66bJUsZj4PO/J2LUjroHkWAvLmB1Ch/uIMQeQM/Zq7cRrf93Ya5gbvOjQ==}
 
   glob@10.4.5:
     resolution: {integrity: sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==}
@@ -1131,7 +1131,7 @@ snapshots:
 
   function-bind@1.1.2: {}
 
-  gibbon-replay-js@0.2.0:
+  gibbon-replay-js@0.4.0:
     dependencies:
       '@fingerprintjs/fingerprintjs': 4.5.0
       '@rrweb/record': 2.0.0-alpha.17
