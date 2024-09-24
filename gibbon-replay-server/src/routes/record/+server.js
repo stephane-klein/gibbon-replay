@@ -20,7 +20,20 @@ export async function OPTIONS() {
 
 export async function POST({ request }) {
     try {
-        const data = JSON.parse(await request.text());
+        const dataStr = await request.text();
+        if (dataStr === "") {
+            return new Response('',
+                {
+                    status: 200,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*'
+                    }
+                }
+            );
+        }
+        
+        const data = JSON.parse(dataStr);
         if (db.prepare(`SELECT count(*) AS count FROM sessions WHERE session_uuid = ?`).get(data.rrweb_session_id).count == 0) {
             const ip = (
                 request.headers.get('x-forwarded-for') ||

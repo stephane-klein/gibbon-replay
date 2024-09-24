@@ -18,8 +18,8 @@ importers:
         specifier: 3.1.2
         version: 3.1.2(svelte@4.2.19)(vite@5.4.3)
       gibbon-replay-js:
-        specifier: 0.4.0
-        version: 0.4.0
+        specifier: 0.7.0
+        version: link:../packages/gibbon-replay-js
       svelte:
         specifier: 4.2.19
         version: 4.2.19
@@ -636,9 +636,6 @@ packages:
 
   function-bind@1.1.2:
     resolution: {integrity: sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==}
-
-  gibbon-replay-js@0.4.0:
-    resolution: {integrity: sha512-1cUTe2cMX5weXrrhnhXHhwgR+JdgR66bJUsZj4PO/J2LUjroHkWAvLmB1Ch/uIMQeQM/Zq7cRrf93Ya5gbvOjQ==}
 
   github-from-package@0.0.0:
     resolution: {integrity: sha512-SyHy3T1v2NUXn29OsWdxmK6RwHD+vkj3v8en8AOBZ1wBQ/hCAQ5bAQTD02kW4W9tUp/3Qh6J8r9EvntiyCmOOw==}
@@ -1599,11 +1596,6 @@ snapshots:
     optional: true
 
   function-bind@1.1.2: {}
-
-  gibbon-replay-js@0.4.0:
-    dependencies:
-      '@fingerprintjs/fingerprintjs': 4.5.0
-      '@rrweb/record': 2.0.0-alpha.17
 
   github-from-package@0.0.0: {}
 

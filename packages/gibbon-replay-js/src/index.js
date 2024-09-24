@@ -7,17 +7,23 @@ export async function init(recordUrl) {
     if (!sessionStorage.getItem('rrweb_session_id')) {
         sessionStorage.setItem('rrweb_session_id', crypto.randomUUID());
 
-        navigator.sendBeacon(
+        fetch(
             recordUrl,
-            JSON.stringify({
-                rrweb_session_id: sessionStorage.getItem('rrweb_session_id'),
-                screenWidth: window.screen.width,
-                screenHeight: window.screen.height,
-                userAgent: navigator.userAgent,
-                platform: navigator.platform,
-                fingerprint: (await (await FingerprintJS.load()).get()).visitorId,
-                href: document.location.href
-            })
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'text/plain'
+                },
+                data: JSON.stringify({
+                    rrweb_session_id: sessionStorage.getItem('rrweb_session_id'),
+                    screenWidth: window.screen.width,
+                    screenHeight: window.screen.height,
+                    userAgent: navigator.userAgent,
+                    platform: navigator.platform,
+                    fingerprint: (await (await FingerprintJS.load()).get()).visitorId,
+                    href: document.location.href
+                })
+            }
         );
     }
     record({
@@ -28,13 +34,25 @@ export async function init(recordUrl) {
 
     function save() {
         if (events.length > 0) {
-            navigator.sendBeacon(
-                recordUrl,
-                JSON.stringify({
-                    events,
-                    rrweb_session_id: sessionStorage.getItem('rrweb_session_id')
-                })
-            );
+            const body = JSON.stringify({
+                events,
+                rrweb_session_id: sessionStorage.getItem('rrweb_session_id')
+            });
+
+            if (body.length > 50000) {
+                fetch(
+                    recordUrl,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'text/plain'
+                        },
+                        data: body
+                    }
+                );
+            } else {
+                navigator.sendBeacon(recordUrl, body);
+            }
             events = [];
         }
     }
