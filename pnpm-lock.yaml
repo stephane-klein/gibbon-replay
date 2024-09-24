@@ -18,7 +18,7 @@ importers:
         specifier: 3.1.2
         version: 3.1.2(svelte@4.2.19)(vite@5.4.3)
       gibbon-replay-js:
-        specifier: 0.7.0
+        specifier: 0.8.0
         version: link:../packages/gibbon-replay-js
       svelte:
         specifier: 4.2.19

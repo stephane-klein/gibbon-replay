@@ -14,7 +14,7 @@ export async function init(recordUrl) {
                 headers: {
                     'Content-Type': 'text/plain'
                 },
-                data: JSON.stringify({
+                body: JSON.stringify({
                     rrweb_session_id: sessionStorage.getItem('rrweb_session_id'),
                     screenWidth: window.screen.width,
                     screenHeight: window.screen.height,
@@ -47,7 +47,7 @@ export async function init(recordUrl) {
                         headers: {
                             'Content-Type': 'text/plain'
                         },
-                        data: body
+                        body: body
                     }
                 );
             } else {
