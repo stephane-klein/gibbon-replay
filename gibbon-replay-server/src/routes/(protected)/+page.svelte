@@ -1,4 +1,5 @@
 <script>
+    import prettyBytes from 'pretty-bytes';
     import {
         convertDatetimeToBrowserTimezone,
         extractTrackCampaign,
@@ -13,6 +14,7 @@
         <tr>
             <th>Datetime</th>
             <th>Screen</th>
+            <th>Size</th>
             <th>UserAgent</th>
             <th>Platform</th>
             <th>Fingerprint</th>
@@ -28,6 +30,7 @@
             <tr>
                 <td><a href={`./${row.session_uuid}/`}>{convertDatetimeToBrowserTimezone(row.timestamp)}</a></td>
                 <td><a href={`./${row.session_uuid}/`}>{row.info.screenWidth}px x {row.info.screenHeight}px</a></td>
+                <td style="white-space: nowrap; text-align: right"><a href={`./${row.session_uuid}/`}>{row.data_size ? prettyBytes(row.data_size) : '-'}</a></td>
                 <td><a href={`./${row.session_uuid}/`}>{row.info.userAgent}</a></td>
                 <td><a href={`./${row.session_uuid}/`}>{row.info.platform}</a></td>
                 <td><a href={`./${row.session_uuid}/`}>{row.fingerprint}</a></td>

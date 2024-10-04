@@ -34,6 +34,16 @@ DB({
                 CREATE INDEX IF NOT EXISTS idx_session_events_session_uuid ON session_events (session_uuid);
                 CREATE INDEX IF NOT EXISTS idx_session_events_timestamp ON session_events (timestamp);;
                 -- Down
+            `,
+            `
+                -- Up
+                ALTER TABLE session_events ADD COLUMN data_size INTEGER DEFAULT NULL;
+
+                UPDATE session_events
+                    SET data_size = LENGTH(src.data)
+                FROM session_events AS src
+                    WHERE (session_events.id = src.id) AND (src.data_size IS NULL);
+                -- Down
             `
         ]
     }
