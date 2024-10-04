@@ -2,7 +2,7 @@ import db from '$lib/server/db';
 
 export async function load() {
     return {
-        rrweb_session_list: db.prepare(`
+        rrweb_session_list: db().query(`
             SELECT
                 session_uuid,
                 timestamp,
@@ -12,7 +12,7 @@ export async function load() {
             FROM
                 sessions
             ORDER BY timestamp DESC
-        `).all().map((row) => {
+        `).map((row) => {
             return {
                 ...row,
                 info: JSON.parse(row.info)

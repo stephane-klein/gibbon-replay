@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@beenotung/better-sqlite3-helper':
+        specifier: 4.1.7
+        version: 4.1.7
       better-sqlite3:
         specifier: 11.3.0
         version: 11.3.0
@@ -45,6 +48,14 @@ packages:
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
+
+  '@beenotung/better-sqlite3-helper@4.1.7':
+    resolution: {integrity: sha512-a4lR4R/XcpfNRH0v9QGcPzYmS8i/uPnPNGtU13kjFqitaDhIZ7l2YUEYJbovK7FQv0gIi2NbF6twaWaGA3rWtg==}
+    peerDependencies:
+      '@types/better-sqlite3': ^7.6.3
+    peerDependenciesMeta:
+      '@types/better-sqlite3':
+        optional: true
 
   '@esbuild/aix-ppc64@0.21.5':
     resolution: {integrity: sha512-1SDgH6ZSPTlggy1yI6+Dbkiz8xzpHJEVAlF/AM1tHPLsf5STom9rwtjE4hKAF20FfXXNTFqEYXyJNWh1GiZedQ==}
@@ -405,6 +416,10 @@ packages:
   ansi-styles@6.2.1:
     resolution: {integrity: sha512-bN798gFfQX+viw3R7yrGWRqnrN2oRkEkUjjl4JNn4E8GxxbjtG3FbrEIIY3l8/hrwUwIeCZvi4QuOTP4MErVug==}
     engines: {node: '>=12'}
+
+  app-root-path@3.1.0:
+    resolution: {integrity: sha512-biN3PwB2gUtjaYy/isrU3aNWI5w+fAfvHkSvCKeQGxhmYpwKFUxudR3Yya+KqVRHBmEDYh+/lTozYCFbmzX4nA==}
+    engines: {node: '>= 6.0.0'}
 
   aria-query@5.3.0:
     resolution: {integrity: sha512-b0P0sZPKtyu8HkeRAfCq0IfURZK+SuwMjY1UXGBU27wpAiTwQAIlq56IbIO+ytk/JjS1fMR14ee5WBBfKi5J6A==}
@@ -1004,6 +1019,12 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
+  '@beenotung/better-sqlite3-helper@4.1.7':
+    dependencies:
+      better-sqlite3: 11.3.0
+    optionalDependencies:
+      app-root-path: 3.1.0
+
   '@esbuild/aix-ppc64@0.21.5':
     optional: true
 
@@ -1281,6 +1302,9 @@ snapshots:
       color-convert: 2.0.1
 
   ansi-styles@6.2.1: {}
+
+  app-root-path@3.1.0:
+    optional: true
 
   aria-query@5.3.0:
     dependencies:

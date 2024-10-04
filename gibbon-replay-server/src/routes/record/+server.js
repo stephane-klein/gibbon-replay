@@ -34,7 +34,7 @@ export async function POST({ request }) {
         }
         
         const data = JSON.parse(dataStr);
-        if (db.prepare(`SELECT count(*) AS count FROM sessions WHERE session_uuid = ?`).get(data.rrweb_session_id).count == 0) {
+        if (db().queryFirstCell('SELECT count(*) AS count FROM sessions WHERE session_uuid = ?', data.rrweb_session_id) == 0) {
             const ip = (
                 request.headers.get('x-forwarded-for') ||
                 request.headers.get('x-real-ip') || null
@@ -48,19 +48,14 @@ export async function POST({ request }) {
                 }
             }
 
-            db.prepare(`
-                INSERT INTO sessions (
-                    session_uuid,
-                    ip,
-                    fingerprint,
-                    info
-                )
-                VALUES(?, ?, ?, ?)
-            `).run(
-                data.rrweb_session_id,
-                ip,
-                data.fingerprint,
-                JSON.stringify(data)
+            db().insert(
+                'sessions',
+                {
+                    session_uuid: data.rrweb_session_id,
+                    ip: ip,
+                    fingerprint: data.fingerprint,
+                    info: JSON.stringify(data)
+                }
             );
             if (process.env.GOTIFY_URL && process.env.GOTIFY_KEY) {
                 try {
@@ -95,17 +90,13 @@ export async function POST({ request }) {
             }
         }
         if (data.events) {
-            db.prepare(`
-                INSERT INTO session_events (
-                    session_uuid,
-                    timestamp,
-                    data
-                )
-                VALUES(?, ?, ?)
-            `).run(
-                data.rrweb_session_id,
-                data.events[0].timestamp,
-                JSON.stringify(data.events)
+            db().insert(
+                'session_events',
+                {
+                    session_uuid: data.rrweb_session_id,
+                    timestamp: data.events[0].timestamp,
+                    data: JSON.stringify(data.events)
+                }
             );
         }
 
