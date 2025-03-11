@@ -1,4 +1,4 @@
-FROM node:20-slim AS base
+FROM node:22.14.0-slim AS base
 RUN apt update -y; apt install -y curl python3 build-essential
 RUN npm install -g pnpm@9.10
 ENV PNPM_HOME="/pnpm"
