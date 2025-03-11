@@ -9,9 +9,9 @@
         extractSource
     } from '$lib/utils.js';
 
-    export let data;
+    let { data } = $props();
 
-    let container;
+    let container = $state();
 
     onMount(() => {
         if (browser) {

@@ -6,7 +6,7 @@
         extractSource
     } from '$lib/utils.js';
 
-    export let data;
+    let { data } = $props();
 </script>
 
 <table>

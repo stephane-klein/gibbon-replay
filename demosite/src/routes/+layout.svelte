@@ -2,7 +2,7 @@
     import gibbonReplayJs from 'gibbon-replay-js';
     import { onMount } from 'svelte';
     import { browser } from '$app/environment';
-    export let data;
+    let { data, children } = $props();
 
     onMount(async () => {
         if (browser) {
@@ -11,4 +11,4 @@
     });
 </script>
 
-<slot />
+{@render children?.()}
