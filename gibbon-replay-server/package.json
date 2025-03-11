@@ -22,6 +22,6 @@
     "dependencies": {
         "@beenotung/better-sqlite3-helper": "4.1.7",
         "better-sqlite3": "11.3.0",
-        "ip-location-api": "1.0.0"
+        "ip-location-api": "2.3.2"
     }
 }
