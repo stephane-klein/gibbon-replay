@@ -12,8 +12,8 @@ importers:
         specifier: 4.1.7
         version: 4.1.7
       better-sqlite3:
-        specifier: 11.3.0
-        version: 11.3.0
+        specifier: 11.8.1
+        version: 11.8.1
       ip-location-api:
         specifier: 2.3.2
         version: 2.3.2
@@ -31,8 +31,8 @@ importers:
         specifier: 4.1.0
         version: 4.1.0
       date-fns-tz:
-        specifier: 3.1.3
-        version: 3.1.3(date-fns@4.1.0)
+        specifier: 3.2.0
+        version: 3.2.0(date-fns@4.1.0)
       pretty-bytes:
         specifier: 6.1.1
         version: 6.1.1
@@ -466,8 +466,8 @@ packages:
   base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
 
-  better-sqlite3@11.3.0:
-    resolution: {integrity: sha512-iHt9j8NPYF3oKCNOO5ZI4JwThjt3Z6J6XrcwG85VNMVzv1ByqrHWv5VILEbCMFWDsoHhXvQ7oC8vgRXFAKgl9w==}
+  better-sqlite3@11.8.1:
+    resolution: {integrity: sha512-9BxNaBkblMjhJW8sMRZxnxVTRgbRmssZW0Oxc1MPBTfiR+WW21e2Mk4qu8CzrcZb1LwPCnFsfDEzq+SNcBU8eg==}
 
   bindings@1.5.0:
     resolution: {integrity: sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==}
@@ -526,10 +526,10 @@ packages:
     resolution: {integrity: sha512-6Fv1DV/TYw//QF5IzQdqsNDjx/wc8TrMBZsqjL9eW01tWb7R7k/mq+/VXfJCl7SoD5emsJop9cOByJZfs8hYIw==}
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0}
 
-  date-fns-tz@3.1.3:
-    resolution: {integrity: sha512-ZfbMu+nbzW0mEzC8VZrLiSWvUIaI3aRHeq33mTe7Y38UctKukgqPR4nTDwcwS4d64Gf8GghnVsroBuMY3eiTeA==}
+  date-fns-tz@3.2.0:
+    resolution: {integrity: sha512-sg8HqoTEulcbbbVXeg84u5UnlsQa8GS5QXMqjjYIhS4abEVVKIUwe0/l/UhrZdKaL/W5eWZNlbTeEIiOXTcsBQ==}
     peerDependencies:
-      date-fns: ^3.0.0
+      date-fns: ^3.0.0 || ^4.0.0
 
   date-fns@4.1.0:
     resolution: {integrity: sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==}
@@ -1089,7 +1089,7 @@ snapshots:
 
   '@beenotung/better-sqlite3-helper@4.1.7':
     dependencies:
-      better-sqlite3: 11.3.0
+      better-sqlite3: 11.8.1
     optionalDependencies:
       app-root-path: 3.1.0
 
@@ -1402,7 +1402,7 @@ snapshots:
 
   base64-js@1.5.1: {}
 
-  better-sqlite3@11.3.0:
+  better-sqlite3@11.8.1:
     dependencies:
       bindings: 1.5.0
       prebuild-install: 7.1.3
@@ -1475,7 +1475,7 @@ snapshots:
       mdn-data: 2.0.30
       source-map-js: 1.2.1
 
-  date-fns-tz@3.1.3(date-fns@4.1.0):
+  date-fns-tz@3.2.0(date-fns@4.1.0):
     dependencies:
       date-fns: 4.1.0
 
