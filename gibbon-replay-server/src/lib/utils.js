@@ -7,7 +7,7 @@ export function convertDatetimeToBrowserTimezone(value) {
             fromZonedTime(value, "UTC"),
             Intl.DateTimeFormat().resolvedOptions().timeZone
         ),
-        "yyyy-mm-dd HH:MM:SS"
+        "yyyy-MM-dd HH:mm:ss"
     )
 }
 
