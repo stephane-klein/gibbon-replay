@@ -1,5 +1,11 @@
 import { format } from 'date-fns';
 import { fromZonedTime, toZonedTime } from 'date-fns-tz';
+import { clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs) {
+    return twMerge(clsx(inputs));
+}
 
 export function convertDatetimeToBrowserTimezone(value) {
     return format(
