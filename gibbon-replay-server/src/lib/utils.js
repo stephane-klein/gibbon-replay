@@ -8,7 +8,7 @@ export function convertDatetimeToBrowserTimezone(value) {
             Intl.DateTimeFormat().resolvedOptions().timeZone
         ),
         "yyyy-MM-dd HH:mm:ss"
-    )
+    );
 }
 
 export function extractTrackCampaign(url) {

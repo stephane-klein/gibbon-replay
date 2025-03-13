@@ -47,7 +47,7 @@ DB({
             `
         ]
     }
-})
+});
 
 DB().pragma('journal_mode = MEMORY');
 DB().pragma('synchronous = OFF');

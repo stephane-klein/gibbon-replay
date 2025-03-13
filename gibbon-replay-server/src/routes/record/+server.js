@@ -6,7 +6,7 @@ await reload({
     fields: 'country,city,country_name,eu,area',
     addCountryInfo: 'true',
     language: 'en'
-})
+});
 
 export async function OPTIONS() {
     return new Response(null, {
@@ -15,7 +15,7 @@ export async function OPTIONS() {
             'Access-Control-Allow-Methods': 'POST, OPTIONS',
             'Access-Control-Allow-Headers': 'Content-Type'
         },
-    })
+    });
 }
 
 export async function POST({ request }) {
@@ -80,7 +80,7 @@ export async function POST({ request }) {
                         }
                     ).catch(
                         (err) => {
-                            console.error('Gotify request error:', err)
+                            console.error('Gotify request error:', err);
                         }
                     );
                 } catch (error) {

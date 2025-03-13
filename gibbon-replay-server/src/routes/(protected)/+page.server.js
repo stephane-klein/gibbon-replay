@@ -22,7 +22,7 @@ export async function load() {
             return {
                 ...row,
                 info: JSON.parse(row.info)
-            }
+            };
         })
     };
 }

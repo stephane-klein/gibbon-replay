@@ -1,6 +1,6 @@
 import { redirect } from '@sveltejs/kit';
 
-export const load = async ({ cookies }) => {
+export const load = async({ cookies }) => {
     const [username, password] = (cookies.get('auth') ?? ":").split(":");
 
     if (
@@ -10,5 +10,5 @@ export const load = async ({ cookies }) => {
         return redirect(303, '/login/');
     }
     return {
-    }
+    };
 };
