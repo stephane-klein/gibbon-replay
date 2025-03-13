@@ -35,7 +35,8 @@
     "dependencies": {
         "@beenotung/better-sqlite3-helper": "4.1.7",
         "better-sqlite3": "11.8.1",
-        "ip-location-api": "2.3.2"
+        "ip-location-api": "2.3.2",
+        "lucide-svelte": "0.479.0"
     },
     "pnpm": {
         "onlyBuiltDependencies": [
