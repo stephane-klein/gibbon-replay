@@ -11,6 +11,12 @@ Go to <http://localhost:5173> to wath replays.
 
 Default login `admin`, password `password`.
 
+## Eslint
+
+```sh
+$ pnpm run eslint-check
+```
+
 ## Instruction for gibbon-replay maintainers
 
 How to build Docker image:
