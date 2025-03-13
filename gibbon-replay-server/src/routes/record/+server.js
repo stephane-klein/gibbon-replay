@@ -70,7 +70,6 @@ export async function POST({ request }) {
                             },
                             body: JSON.stringify({
                                 title: 'New session recording',
-                                message: data.rrweb_session_id,
                                 message: `[${data.rrweb_session_id}](${new URL("/" + data.rrweb_session_id + "/", process.env.ORIGIN).toString()})`,
                                 extras: {
                                     "client::display": {
