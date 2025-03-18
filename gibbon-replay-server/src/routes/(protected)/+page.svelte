@@ -47,7 +47,7 @@
         <Table.Header>
             <Table.Row>
                 <Table.Head>Datetime</Table.Head>
-                <Table.Head>Screen</Table.Head>
+                <Table.Head class="whitespace-nowrap">Screen size in px</Table.Head>
                 <Table.Head>Size</Table.Head>
                 <Table.Head>UserAgent</Table.Head>
                 <Table.Head>Platform</Table.Head>
@@ -66,7 +66,7 @@
                         <a href={`./${row.session_uuid}/`}>{convertDatetimeToBrowserTimezone(row.timestamp)}</a>
                     </Table.Cell>
                     <Table.Cell class="h-24 text-left whitespace-nowrap">
-                        <a href={`./${row.session_uuid}/`}>{row.info.screenWidth}px x {row.info.screenHeight}px</a>
+                        <a href={`./${row.session_uuid}/`}>{row.info.screenWidth}x{row.info.screenHeight}</a>
                     </Table.Cell>
                     <Table.Cell class="h-24 text-right whitespace-nowrap">
                         <a href={`./${row.session_uuid}/`}>{row.data_size ? prettyBytes(row.data_size) : '-'}</a>
