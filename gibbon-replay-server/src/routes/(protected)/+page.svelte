@@ -6,11 +6,41 @@
         extractSource
     } from '$lib/utils.js';
     import * as Table from "$lib/components/ui/table/index.js";
-    import { Trash2 } from "lucide-svelte";
+    import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
+    import { Trash2, Ellipsis } from "lucide-svelte";
     import { Button } from "$lib/components/ui/button/index.js";
 
     let { data } = $props();
 </script>
+
+<div class="hidden flex-col md:flex">
+    <div class="border-b">
+        <div class="flex h-16 items-center px-4 w-full">
+            <nav class="flex flex-auto items-center space-x-4 lg:space-x-6">
+                <a href="/" class="hover:text-primary text-sm font-medium transition-colors">
+                    Recorded sessions
+                </a>
+            </nav>
+            <DropdownMenu.Root class="flex-none">
+                <DropdownMenu.Trigger>
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        class="data-[state=open]:bg-accent h-7 w-7"
+                    >
+                        <Ellipsis />
+                    </Button>
+                </DropdownMenu.Trigger>
+                <DropdownMenu.Content class="w-56" align="end">
+                    <DropdownMenu.Item>
+                        <a href="/logout/" data-sveltekit-reload class="w-full block">Log out</a>
+                    </DropdownMenu.Item>
+                </DropdownMenu.Content>
+            </DropdownMenu.Root>
+        </div>
+    </div>
+</div>
+
 
 <div class="rounded-md border">
     <Table.Root>
