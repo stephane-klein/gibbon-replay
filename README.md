@@ -6,7 +6,7 @@ Session events are recorded and sent to an HTTP POST endpoint implemented in [Sv
 
 The `/replay/` page loads a session's events from SQLite and sends them to the [`rrweb-player`](https://github.com/rrweb-io/rrweb/tree/master/packages/rrweb-player/) component, which is replaying the session.
 
-More information (in french): https://notes.sklein.xyz/Notes-%C3%A9ph%C3%A9m%C3%A8res/2024-09-07_2240
+More information (in french): https://notes.sklein.xyz/2024-09-07_2240/
 
 Here is how to test the project:
 
