@@ -1,6 +1,6 @@
 FROM node:22.14.0-slim AS base
 RUN apt update -y; apt install -y curl python3 build-essential
-RUN npm install -g pnpm@10.6.2
+RUN npm install -g pnpm@10.11
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
