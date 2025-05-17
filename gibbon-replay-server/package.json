@@ -37,6 +37,7 @@
         "@beenotung/better-sqlite3-helper": "4.1.7",
         "@humanspeak/svelte-headless-table": "5.1.0",
         "better-sqlite3": "11.10.0",
+        "favicons": "7.2.0",
         "ip-location-api": "2.3.2",
         "lucide-svelte": "0.511.0"
     },
