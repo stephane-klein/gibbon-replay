@@ -1,3 +1,4 @@
+import { error } from '@sveltejs/kit';
 import db from '$lib/server/db';
 
 export async function load({ params }) {
@@ -5,6 +6,11 @@ export async function load({ params }) {
         `SELECT * FROM sessions WHERE session_uuid = ?`,
         params.rrweb_session_id
     );
+    if (!session) {
+        error(404, {
+            message: "Session record not found"
+        });
+    }
     session.info = JSON.parse(session.info);
 
     return {
