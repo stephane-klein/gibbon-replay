@@ -113,6 +113,12 @@
     <div class="border-b">
         <div class="flex h-16 items-center px-4 w-full">
             <nav class="flex flex-auto items-center space-x-4 lg:space-x-6">
+                <img
+                    src="/logo-gibbon-replay.webp" 
+                    srcset="/logo-gibbon-replay.webp, /logo-gibbon-replay@2x.webp 2x"
+                    alt="Logo Gibbon-Replay"
+                    style="border-radius: 0.5rem"
+                />
                 <a href="/" class="hover:text-primary text-sm font-medium transition-colors">
                     Recorded sessions
                 </a>

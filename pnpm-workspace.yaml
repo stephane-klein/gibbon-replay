@@ -1,4 +1,9 @@
 packages:
-  - 'packages/*'
-  - 'demosite/'
-  - 'gibbon-replay-server/'
+  - packages/*
+  - demosite/
+  - gibbon-replay-server/
+ignoredBuiltDependencies:
+  - esbuild
+  - sharp
+onlyBuiltDependencies:
+  - better-sqlite3
