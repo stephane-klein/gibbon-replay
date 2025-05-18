@@ -7,7 +7,7 @@
     import { addPagination } from "@humanspeak/svelte-headless-table/plugins";
     import * as Table from "$lib/components/ui/table/index.js";
     import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
-    import { Ellipsis } from "lucide-svelte";
+    import Ellipsis from "@lucide/svelte/icons/ellipsis";
     import { Button } from "$lib/components/ui/button/index.js";
     import * as Select from "$lib/components/ui/select/index.js";
     import * as Pagination from "$lib/components/ui/pagination/index.js";
