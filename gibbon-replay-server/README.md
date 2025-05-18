@@ -3,6 +3,7 @@
 ```sh
 $ mise install
 $ pnpm install
+$ pnpm rebuild
 $ node ./node_modules/ip-location-api/script/updatedb.mjs
 $ pnpm run dev
 ```
