@@ -4,9 +4,17 @@ DB({
     path: process.env.SQLITE_PATH || 'gibbon.db',
     fileMustExist: false,
     WAL: false,
-    migrate: {
-        force: false, // set to 'last' to automatically reapply the last migration-file
-        table: 'migration', // name of the database table that is used to keep track
+    migrate: false
+});
+
+DB().pragma('journal_mode = MEMORY');
+DB().pragma('synchronous = OFF');
+DB().pragma('foreign_keys = ON');
+
+export const migrate = () => {
+    console.log('Start data model migration…');
+    DB().migrate({
+        table: 'migration',
         migrations: [
             `
                 -- Up
@@ -46,11 +54,8 @@ DB({
                 -- Down
             `
         ]
-    }
-});
-
-DB().pragma('journal_mode = MEMORY');
-DB().pragma('synchronous = OFF');
-DB().pragma('foreign_keys = ON');
+    });
+    console.log('Data model migration completed');
+};
 
 export default DB;
