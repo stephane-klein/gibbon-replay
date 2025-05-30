@@ -26,6 +26,9 @@ importers:
       lucide-svelte:
         specifier: 0.511.0
         version: 0.511.0(svelte@5.30.1)
+      node-cron:
+        specifier: 4.0.7
+        version: 4.0.7
     devDependencies:
       '@eslint/js':
         specifier: 9.22.0
@@ -1581,6 +1584,10 @@ packages:
   node-abi@3.74.0:
     resolution: {integrity: sha512-c5XK0MjkGBrQPGYG24GBADZud0NCbznxNx0ZkS+ebUTrmV1qTDxPxSL8zEAPURXSbLRWVexxmP4986BziahL5w==}
     engines: {node: '>=10'}
+
+  node-cron@4.0.7:
+    resolution: {integrity: sha512-A37UUDpxRT/kWanELr/oMayCWQFk9Zx9BEUoXrAKuKwKzH4XuAX+vMixMBPkgZBkADgJwXv91w5cMRTNSVP/mA==}
+    engines: {node: '>=6.0.0'}
 
   node-releases@2.0.19:
     resolution: {integrity: sha512-xxOWJsBKtzAq7DY0J+DTzuz58K8e7sJbdgwkbMWQe8UYB6ekmsQ45q0M/tJDsGaZmbC+l7n57UV8Hl5tHxO9uw==}
@@ -3408,6 +3415,8 @@ snapshots:
   node-abi@3.74.0:
     dependencies:
       semver: 7.7.1
+
+  node-cron@4.0.7: {}
 
   node-releases@2.0.19: {}
 
