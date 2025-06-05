@@ -37,3 +37,18 @@ export function extractSource(url) {
         );
     }
 }
+
+export function humanReadableDuration(durationInSeconds) {
+    const hours = Math.floor(durationInSeconds / 3600);
+    const remainingSeconds = durationInSeconds % 3600;
+    const minutes = Math.floor(remainingSeconds / 60);
+    const seconds = remainingSeconds % 60;
+
+    if (hours > 0) {
+        return `${hours}h ${minutes}m ${seconds}s`;
+    } else if (minutes > 0) {
+        return `${minutes}m ${seconds}s`;
+    } else {
+        return `${seconds}s`;
+    }
+}

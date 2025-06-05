@@ -14,7 +14,8 @@
     import {
         convertDatetimeToBrowserTimezone,
         extractTrackCampaign,
-        extractSource
+        extractSource,
+        humanReadableDuration
     } from "$lib/utils.js";
     import Link from "./Link.svelte";
 
@@ -56,6 +57,12 @@
                 header: "Screen size in px",
                 accessor: (item) => `${item?.info?.screenWidth || ""}x${item?.info?.screenHeight || ""}`,
                 plugins: { appendToClass: "text-left whitespace-nowrap" },
+                cell: LinkCell
+            }),
+            table.column({
+                header: "Duration",
+                accessor: (item) => humanReadableDuration(item.duration_in_seconds),
+                plugins: { appendToClass: "text-right whitespace-nowrap" },
                 cell: LinkCell
             }),
             table.column({

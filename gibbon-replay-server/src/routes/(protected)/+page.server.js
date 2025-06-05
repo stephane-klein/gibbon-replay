@@ -15,6 +15,7 @@ export async function load({ url }) {
                     sessions.ip,
                     sessions.fingerprint,
                     sessions.info,
+                    sessions.duration_in_seconds,
                     SUM(session_events.data_size) AS data_size
                 FROM
                     sessions
