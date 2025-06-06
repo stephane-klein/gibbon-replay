@@ -127,7 +127,7 @@
                     style="border-radius: 0.5rem"
                 />
                 <a href="/" class="hover:text-primary text-sm font-medium transition-colors">
-                    Recorded sessions
+                    Recorded sessions ({prettyBytes(data.sessions_size)})
                 </a>
             </nav>
             <DropdownMenu.Root class="flex-none">

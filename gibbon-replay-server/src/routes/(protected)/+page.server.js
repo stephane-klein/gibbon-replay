@@ -7,6 +7,12 @@ export async function load({ url }) {
         sessions_count: db().query(`
             SELECT COUNT(*) AS count FROM sessions
         `)[0].count,
+        sessions_size: db().query(`
+            SELECT
+                SUM(data_size) AS data_size
+            FROM
+                session_events
+        `)[0].data_size,
         sessions: db().query(
             `
                 SELECT
