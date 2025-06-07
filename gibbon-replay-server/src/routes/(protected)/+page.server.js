@@ -11,24 +11,20 @@ export async function load({ url }) {
             SELECT
                 SUM(data_size) AS data_size
             FROM
-                session_events
+                sessions
         `)[0].data_size,
         sessions: db().query(
             `
                 SELECT
-                    sessions.session_uuid,
-                    DATETIME(sessions.timestamp, 'unixepoch') AS timestamp,
-                    sessions.ip,
-                    sessions.fingerprint,
-                    sessions.info,
-                    sessions.duration_in_seconds,
-                    SUM(session_events.data_size) AS data_size
+                    session_uuid,
+                    DATETIME(timestamp, 'unixepoch') AS timestamp,
+                    ip,
+                    fingerprint,
+                    info,
+                    duration_in_seconds,
+                    data_size
                 FROM
                     sessions
-                LEFT JOIN
-                    session_events
-                ON
-                    session_events.session_uuid=sessions.session_uuid
                 GROUP BY sessions.session_uuid
                 ORDER BY sessions.timestamp DESC
                 LIMIT ?

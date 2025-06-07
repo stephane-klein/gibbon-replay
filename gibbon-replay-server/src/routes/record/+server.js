@@ -100,12 +100,14 @@ export async function POST({ request }) {
                 `,
                 data.rrweb_session_id
             );
+            const dataEventsStr = JSON.stringify(data.events);
             db().insert(
                 'session_events',
                 {
                     session_uuid: data.rrweb_session_id,
                     timestamp: Math.floor(data.events[0].timestamp / 1000),
-                    data: JSON.stringify(data.events)
+                    data: dataEventsStr,
+                    data_size: dataEventsStr.length
                 }
             );
             db().update(
@@ -117,6 +119,10 @@ export async function POST({ request }) {
                         ) - (
                             Math.floor((firstEventTimestamp ? firstEventTimestamp : data.events[0].timestamp) / 1000)
                         )
+                    ),
+                    data_size: db().queryFirstCell(
+                        'SELECT SUM(data_size) FROM session_events WHERE session_uuid=?',
+                        data.rrweb_session_id
                     )
                 },
                 {

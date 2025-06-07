@@ -133,6 +133,18 @@ export const migrate = () => {
                 ALTER TABLE session_events RENAME COLUMN tmp_timestamp TO timestamp;
                 CREATE INDEX idx_session_events_timestamp ON session_events (timestamp);
                 -- Down
+            `,
+            `
+                -- Up
+                ALTER TABLE sessions ADD COLUMN data_size INTEGER DEFAULT NULL;
+
+                UPDATE sessions
+                   SET data_size=(
+                          SELECT SUM(data_size)
+                            FROM session_events
+                           WHERE session_events.session_uuid=sessions.session_uuid
+                       );
+                -- Down
             `
         ]
     });
