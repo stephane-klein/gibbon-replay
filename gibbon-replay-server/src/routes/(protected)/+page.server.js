@@ -17,7 +17,7 @@ export async function load({ url }) {
             `
                 SELECT
                     sessions.session_uuid,
-                    sessions.timestamp,
+                    DATETIME(sessions.timestamp, 'unixepoch') AS timestamp,
                     sessions.ip,
                     sessions.fingerprint,
                     sessions.info,

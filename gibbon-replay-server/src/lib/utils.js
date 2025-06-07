@@ -8,12 +8,16 @@ export function cn(...inputs) {
 }
 
 export function convertDatetimeToBrowserTimezone(value) {
-    return format(
-        toZonedTime(
-            fromZonedTime(value, "UTC"),
-            Intl.DateTimeFormat().resolvedOptions().timeZone
-        ),
-        "yyyy-MM-dd HH:mm:ss"
+    return (
+        value
+            ? format(
+                toZonedTime(
+                    fromZonedTime(value, "UTC"),
+                    Intl.DateTimeFormat().resolvedOptions().timeZone
+                ),
+                "yyyy-MM-dd HH:mm:ss"
+            )
+            : '-'
     );
 }
 
