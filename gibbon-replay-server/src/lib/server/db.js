@@ -106,6 +106,33 @@ export const migrate = () => {
                 WHERE
                     sessions.duration_in_seconds IS NULL;
                 -- Down
+            `,
+            `
+                -- Up
+                DROP INDEX idx_sessions_timestamp;
+                ALTER TABLE sessions ADD COLUMN tmp_timestamp INTEGER; -- I don't define a default value here
+                                                                       -- because SQLite doesn't allow adding
+                                                                       -- a column with ALTER that has a default
+                                                                       -- value which is not a constant. See: https://www.sqlite.org/lang_altertable.html
+                                                                       -- « The column may not have a default value of
+                                                                       -- CURRENT_TIME, CURRENT_DATE, CURRENT_TIMESTAMP,
+                                                                       -- or an expression in parentheses. »
+
+                UPDATE sessions SET tmp_timestamp=UNIXEPOCH(timestamp);
+
+                ALTER TABLE sessions DROP COLUMN timestamp;
+                ALTER TABLE sessions RENAME COLUMN tmp_timestamp TO timestamp;
+                CREATE INDEX idx_sessions_timestamp ON sessions (timestamp);
+
+                DROP INDEX idx_session_events_timestamp;
+                ALTER TABLE session_events ADD COLUMN tmp_timestamp INTEGER;
+
+                UPDATE session_events SET tmp_timestamp=UNIXEPOCH(timestamp);
+
+                ALTER TABLE session_events DROP COLUMN timestamp;
+                ALTER TABLE session_events RENAME COLUMN tmp_timestamp TO timestamp;
+                CREATE INDEX idx_session_events_timestamp ON session_events (timestamp);
+                -- Down
             `
         ]
     });
