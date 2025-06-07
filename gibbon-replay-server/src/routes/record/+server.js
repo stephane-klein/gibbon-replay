@@ -91,12 +91,36 @@ export async function POST({ request }) {
         }
 
         if (data.events) {
+            const firstEventTimestamp = db().queryFirstCell(`
+                  SELECT JSON_EXTRACT(data, '$[0].timestamp') AS first_event_timestamp
+                    FROM session_events
+                   WHERE session_uuid = ?
+                ORDER BY timestamp ASC
+                   LIMIT 1
+                `,
+                data.rrweb_session_id
+            );
             db().insert(
                 'session_events',
                 {
                     session_uuid: data.rrweb_session_id,
-                    timestamp: data.events[0].timestamp / 1000,
+                    timestamp: Math.floor(data.events[0].timestamp / 1000),
                     data: JSON.stringify(data.events)
+                }
+            );
+            db().update(
+                'sessions',
+                {
+                    duration_in_seconds: (
+                        (
+                            Math.floor(data.events[data.events.length - 1].timestamp / 1000)
+                        ) - (
+                            Math.floor((firstEventTimestamp ? firstEventTimestamp : data.events[0].timestamp) / 1000)
+                        )
+                    )
+                },
+                {
+                    session_uuid: data.rrweb_session_id
                 }
             );
         }
