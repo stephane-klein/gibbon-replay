@@ -53,6 +53,7 @@ export async function POST({ request }) {
                 {
                     session_uuid: data.rrweb_session_id,
                     ip: ip,
+                    timestamp: Math.floor(Date.now() / 1000),
                     fingerprint: data.fingerprint,
                     info: JSON.stringify(data)
                 }
@@ -88,12 +89,13 @@ export async function POST({ request }) {
                 }
             }
         }
+
         if (data.events) {
             db().insert(
                 'session_events',
                 {
                     session_uuid: data.rrweb_session_id,
-                    timestamp: data.events[0].timestamp,
+                    timestamp: data.events[0].timestamp / 1000,
                     data: JSON.stringify(data.events)
                 }
             );

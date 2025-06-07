@@ -3,7 +3,17 @@ import db from '$lib/server/db';
 
 export async function load({ params }) {
     const session = db().queryFirstRow(
-        `SELECT * FROM sessions WHERE session_uuid = ?`,
+        `
+            SELECT
+                DATETIME(timestamp, 'unixepoch') AS timestamp,
+                info,
+                fingerprint,
+                ip
+            FROM
+                sessions
+            WHERE
+                session_uuid = ?
+        `,
         params.rrweb_session_id
     );
     if (!session) {
