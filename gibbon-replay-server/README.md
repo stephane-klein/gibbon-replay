@@ -12,6 +12,13 @@ Go to <http://localhost:5173> to wath replays.
 
 Default login `admin`, password `password`.
 
+## Utilities commands
+
+```sh
+$ pnpm run compute_all_sessions_duration
+$ pnpm run compute_all_sessions_has_user_actions
+```
+
 ## Eslint
 
 ```sh

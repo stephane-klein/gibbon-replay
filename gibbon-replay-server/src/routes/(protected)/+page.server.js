@@ -22,7 +22,8 @@ export async function load({ url }) {
                     fingerprint,
                     info,
                     duration_in_seconds,
-                    data_size
+                    data_size,
+                    has_user_actions
                 FROM
                     sessions
                 GROUP BY sessions.session_uuid

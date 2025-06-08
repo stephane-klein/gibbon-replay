@@ -54,6 +54,11 @@
                 cell: LinkCell
             }),
             table.column({
+                header: "User actions",
+                accessor: (item) => item.has_user_actions ? 'Yes' : '',
+                cell: LinkCell
+            }),
+            table.column({
                 header: "Screen size in px",
                 accessor: (item) => `${item?.info?.screenWidth || ""}x${item?.info?.screenHeight || ""}`,
                 plugins: { appendToClass: "text-left whitespace-nowrap" },

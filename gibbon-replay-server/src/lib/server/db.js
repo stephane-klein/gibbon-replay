@@ -145,6 +145,11 @@ export const migrate = () => {
                            WHERE session_events.session_uuid=sessions.session_uuid
                        );
                 -- Down
+            `,
+            `
+                -- Up
+                ALTER TABLE sessions ADD COLUMN has_user_actions BOOLEAN DEFAULT FALSE;
+                -- Down
             `
         ]
     });

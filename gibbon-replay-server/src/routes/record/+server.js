@@ -1,3 +1,4 @@
+import { EventType, IncrementalSource } from 'rrweb';
 import db from "$lib/server/db.js";
 import { lookup, reload } from 'ip-location-api';
 export const trailingSlash = "always";
@@ -34,7 +35,19 @@ export async function POST({ request }) {
         }
         
         const data = JSON.parse(dataStr);
-        if (db().queryFirstCell('SELECT count(*) AS count FROM sessions WHERE session_uuid = ?', data.rrweb_session_id) == 0) {
+        const session = db().queryFirstRow(
+            `
+                SELECT
+                    data_size,
+                    has_user_actions
+                FROM
+                    sessions
+                WHERE
+                    session_uuid = ?
+            `,
+            data.rrweb_session_id
+        );
+        if (!session) {
             const ip = (
                 request.headers.get('x-forwarded-for') ||
                 request.headers.get('x-real-ip') || null
@@ -120,9 +133,26 @@ export async function POST({ request }) {
                             Math.floor((firstEventTimestamp ? firstEventTimestamp : data.events[0].timestamp) / 1000)
                         )
                     ),
-                    data_size: db().queryFirstCell(
-                        'SELECT SUM(data_size) FROM session_events WHERE session_uuid=?',
-                        data.rrweb_session_id
+                    data_size: (session ? session.data_size : 0) + dataEventsStr.length,
+                    has_user_actions: (
+                        (
+                            session?.has_user_actions === 1
+                            ? 1
+                            : (
+                                data.events.some(
+                                    (event) => {
+                                        return (
+                                            (event.type === EventType.IncrementalSnapshot) && 
+                                                (
+                                                    (event.data.source === IncrementalSource.MouseMove) ||
+                                                        (event.data.source === IncrementalSource.TouchMove) ||
+                                                        (event.data.source === IncrementalSource.Scroll)
+                                                )
+                                        );
+                                    }
+                                ) ? 1 : 0
+                            )
+                        )
                     )
                 },
                 {
