@@ -12,12 +12,12 @@
     import * as Select from "$lib/components/ui/select/index.js";
     import * as Pagination from "$lib/components/ui/pagination/index.js";
     import {
-        convertDatetimeToBrowserTimezone,
         extractTrackCampaign,
-        extractSource,
-        humanReadableDuration
+        extractSource
     } from "$lib/utils.js";
     import Link from "./Link.svelte";
+    import Info from "./Info.svelte";
+    import Ago from "./Ago.svelte";
 
     const currentPage = $derived(parseInt($page.url.searchParams.get("page") || "1", 10));
     const perPage = $derived(parseInt($page.url.searchParams.get("per_page") || "20", 10));
@@ -35,6 +35,16 @@
         });
     });
 
+    const AgoCell = ({row}) => {
+        return createRender(
+            Ago,
+            {
+                href: `./${row.original.session_uuid}/`,
+                timestamp: row.original.timestamp
+            }
+        );
+    };
+
     const LinkCell = ({row, value}) => {
         return createRender(
             Link,
@@ -44,66 +54,34 @@
             }
         );
     };
+    const InfoCell = ({row}) => {
+        return createRender(
+            Info,
+            {
+                timestamp: row.original.timestamp,
+                durationInSeconds: row.original.duration_in_seconds,
+                fingerprint: row.original.fingerprint,
+                userAgent: row.original.info.userAgent,
+                dataSize: row.original.data_size,
+                screenWidth: row.original?.info?.screenWidth,
+                screenHeight: row.original?.info?.screenHeight,
+                ip: row.original?.ip,
+                location: row.original?.info?.location,
+                hasUserActions: row.original?.has_user_actions
+            }
+        );
+    };
 
     const columns = $derived.by(() => {
         return table.createColumns([
             table.column({
-                header: "Datetime",
-                accessor: (item) => convertDatetimeToBrowserTimezone(item.timestamp),
-                plugins: { appendToClass: "text-left whitespace-nowrap" },
-                cell: LinkCell
+                header: "Date",
+                plugins: { appendToClass: "w-40" },
+                cell: AgoCell
             }),
             table.column({
-                header: "User actions",
-                accessor: (item) => item.has_user_actions ? 'Yes' : '',
-                cell: LinkCell
-            }),
-            table.column({
-                header: "Screen size in px",
-                accessor: (item) => `${item?.info?.screenWidth || ""}x${item?.info?.screenHeight || ""}`,
-                plugins: { appendToClass: "text-left whitespace-nowrap" },
-                cell: LinkCell
-            }),
-            table.column({
-                header: "Duration",
-                accessor: (item) => humanReadableDuration(item.duration_in_seconds),
-                plugins: { appendToClass: "text-right whitespace-nowrap" },
-                cell: LinkCell
-            }),
-            table.column({
-                header: "Size",
-                accessor: (item) => item.data_size ? prettyBytes(item.data_size) : '-',
-                plugins: { appendToClass: "text-right whitespace-nowrap" },
-                cell: LinkCell
-            }),
-            table.column({
-                header: "UserAgent",
-                accessor: (item) => item.info.userAgent || "-",
-                cell: LinkCell
-            }),
-            table.column({
-                header: "Platform",
-                accessor: (item) => item.info.platform || "-",
-                plugins: { appendToClass: "text-left whitespace-nowrap" },
-                cell: LinkCell
-            }),
-            table.column({
-                header: "Fingerprint",
-                accessor: "fingerprint",
-                plugins: { appendToClass: "text-left whitespace-nowrap" },
-                cell: LinkCell
-            }),
-            table.column({
-                header: "ip",
-                accessor: "ip",
-                plugins: { appendToClass: "text-left whitespace-nowrap" },
-                cell: LinkCell
-            }),
-            table.column({
-                header: "Location",
-                accessor: (item) => `${item.info?.location?.city || "?"}, ${item.info?.location?.country_name || "?"}`,
-                plugins: { appendToClass: "text-left whitespace-nowrap" },
-                cell: LinkCell
+                header: "",
+                cell: InfoCell
             }),
             table.column({
                 header: "Campaign",
@@ -174,7 +152,7 @@
                 {#each $rows as row (row.id)}
                     <Table.Row id={row.id}>
                         {#each row.cells as cell (cell.id)}
-                            <Table.Cell class={`h-16 ${cell.column.plugins?.appendToClass || ''}`}>
+                            <Table.Cell class={`h-16 align-top leading-6 ${cell.column.plugins?.appendToClass || ''}`}>
                                 <Render of={cell.render()} />
                             </Table.Cell>
                         {/each}

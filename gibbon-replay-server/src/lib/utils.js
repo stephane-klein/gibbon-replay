@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import { formatDistanceToNow, format } from 'date-fns';
 import { fromZonedTime, toZonedTime } from 'date-fns-tz';
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -18,6 +18,18 @@ export function convertDatetimeToBrowserTimezone(value) {
                 "yyyy-MM-dd HH:mm:ss"
             )
             : '-'
+    );
+}
+
+export function timeAgo(value) {
+    return formatDistanceToNow(
+        toZonedTime(
+            fromZonedTime(value, "UTC"),
+            Intl.DateTimeFormat().resolvedOptions().timeZone
+        ),
+        {
+            addSuffix: true
+        }
     );
 }
 
