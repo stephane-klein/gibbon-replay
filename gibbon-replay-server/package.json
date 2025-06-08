@@ -6,7 +6,8 @@
         "build": "vite build",
         "preview": "vite preview",
         "eslint-check": "eslint .",
-        "compute_all_sessions_duration": "node src/compute_all_sessions_duration.js"
+        "compute_all_sessions_duration": "node src/compute_all_sessions_duration.js",
+        "compute_all_sessions_has_mouse_movement": "node src/compute_all_sessions_has_mouse_movement.js"
     },
     "devDependencies": {
         "@eslint/js": "9.22.0",
