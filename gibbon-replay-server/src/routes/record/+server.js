@@ -1,13 +1,7 @@
 import { EventType, IncrementalSource } from 'rrweb';
 import db from "$lib/server/db.js";
-import { lookup, reload } from 'ip-location-api';
+import { lookup } from 'ip-location-api';
 export const trailingSlash = "always";
-
-await reload({
-    fields: 'country,city,country_name,eu,area',
-    addCountryInfo: 'true',
-    language: 'en'
-});
 
 export async function OPTIONS() {
     return new Response(null, {

@@ -1,6 +1,7 @@
 import cron from 'node-cron';
 import addDays from 'date-fns/addDays';
 import db, { migrate } from './lib/server/db.js';
+import { reload } from 'ip-location-api';
 
 function deleteOldSessions(keep_session_age_days) {
     const delete_sessions_older_than_this_date = addDays(
@@ -30,6 +31,12 @@ function deleteOldSessions(keep_session_age_days) {
 
 export async function init() {
     migrate();
+
+    await reload({
+        fields: 'country,city,country_name,eu,area',
+        addCountryInfo: 'true',
+        language: 'en'
+    });
 
     cron.schedule(
         '0 0 4 * *',
