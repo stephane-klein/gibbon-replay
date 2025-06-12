@@ -27,12 +27,17 @@
         return writable(data.sessions);
     });
     const table = $derived.by(() => {
-        return createTable(dataStore, {
-            page: addPagination({
-                serverSide: true,
-                serverItemCount: data.sessions_count
-            }),
-        });
+        return createTable(
+            dataStore,
+            data.sessions_count > 0 
+                ? {
+                    page: addPagination({
+                        serverSide: true,
+                        serverItemCount: data.sessions_count
+                    })
+                }
+                : undefined
+        );
     });
 
     const AgoCell = ({row}) => {
@@ -110,7 +115,7 @@
                     style="border-radius: 0.5rem"
                 />
                 <a href="/" class="hover:text-primary text-sm font-medium transition-colors">
-                    Recorded sessions ({prettyBytes(data.sessions_size)})
+                    Recorded sessions ({prettyBytes(data?.sessions_size || 0)})
                 </a>
             </nav>
             <DropdownMenu.Root class="flex-none">
