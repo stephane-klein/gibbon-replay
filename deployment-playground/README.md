@@ -11,6 +11,7 @@ This [`docker-compose.yaml`](./docker-compose.yaml) contains only two services:
 Gettiing start:
 
 ```sh
+$ direnv allow
 $ docker compose build
 $ docker compose up -d
 ```
@@ -24,3 +25,9 @@ Explore the demo site and then go to *gibbon-replay-server* to view your session
 
 Login : `admin`  
 Password: ` password`
+
+## Teardown
+
+```sh
+$ docker compose down -v
+```

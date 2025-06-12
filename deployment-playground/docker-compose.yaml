@@ -4,7 +4,7 @@ services:
     ports:
       - 5173:3000
     volumes:
-      - ./volumes/sqlite/:/data/
+      - sqlite:/data/
     environment:
       SQLITE_PATH: /data/gibbon.db
       AUTH_USER: admin
@@ -36,4 +36,10 @@ services:
       GOTIFY_PLUGINSDIR: data/plugins
       GOTIFY_REGISTRATION: 'false'
     volumes:
-      - ./volumes/gotify/:/data/
+      - gotify:/data/
+
+volumes:
+  sqlite:
+     name: ${COMPOSE_PROJECT_NAME}_sqlite
+  gotify:
+     name: ${COMPOSE_PROJECT_NAME}_gotify
