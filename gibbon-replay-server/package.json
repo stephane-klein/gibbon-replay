@@ -42,7 +42,7 @@
         "better-sqlite3": "11.10.0",
         "bowser": "2.11.0",
         "favicons": "7.2.0",
-        "ip-location-api": "2.3.2",
+        "ip-location-api": "3.0.3",
         "lucide-svelte": "0.511.0",
         "node-cron": "4.0.7"
     },
