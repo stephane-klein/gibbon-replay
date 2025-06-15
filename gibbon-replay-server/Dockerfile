@@ -27,6 +27,10 @@ RUN pnpm run build
 FROM base
 COPY --from=prod-deps /app/node_modules /app/node_modules
 COPY --from=build /app/build /app/build
+COPY --from=build /app/src/lib/server/ /app/src/lib/server/
+COPY --from=build /app/src/compute_all_sessions_duration.js /app/src/
+COPY --from=build /app/src/compute_all_sessions_has_user_actions.js /app/src/
+
 EXPOSE 3000
 ENV ILA_DATA_DIR=/app/node_modules/ip-location-api/data/
 

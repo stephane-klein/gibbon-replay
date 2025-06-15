@@ -26,6 +26,20 @@ Explore the demo site and then go to *gibbon-replay-server* to view your session
 Login : `admin`  
 Password: ` password`
 
+## Running utility scripts
+
+```
+$ docker compose exec gibbon-replay-server node src/compute_all_sessions_has_user_actions.js
+Start data model migration…
+Data model migration completed
+1/1 session have user actions
+
+$ docker compose exec gibbon-replay-server node src/compute_all_sessions_duration.js
+Start data model migration…
+Data model migration completed
+1 session.duration_in_seconds updated
+```
+
 ## Teardown
 
 ```sh
